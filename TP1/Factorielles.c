@@ -1,16 +1,18 @@
 typedef short TypeEntier;
 #include <stdio.h>
 
-TypeEntier factorielle(TypeEntier nombre){
-    TypeEntier fact = 1;
+long factorielle(long nombre){
+    long fac = 1;
     for(int i = 1; i<=nombre; i++){
-        fact*= i;
+        fac*= i;
     }
-    return(fact);
+    return(fac);
 }
 
 
 int main (void){
-    int NbTest = 5;
-    printf("%d", factorielle(NbTest));
+    for (int k = 1; k < 16; k++){
+        printf("%ld\n", factorielle(k));
+    }
+    
 }
