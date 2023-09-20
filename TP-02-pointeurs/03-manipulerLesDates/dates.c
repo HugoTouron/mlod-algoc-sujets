@@ -1,20 +1,15 @@
-enum Mois {
-    Janvier,
-    Fevrier,
-    Mars,
-    Avril,
-    Mai,
-    Juin,
-    Juillet,
-    Aout,
-    Septembre,
-    Octobre,
-    Novembre,
-    Decembre
-};
+#include "dates.h"
+#include <stdio.h>
 
-struct Date {
-    int jour;
-    enum Mois mois;
-    int annee;
-};
+void initialiseDate(Date *d){
+    printf("jour : ");
+    scanf("%d", &d->jour);
+    printf("mois : ");
+    scanf("%d", (int *)&d->mois);
+    printf("année : ");
+    scanf("%d", &d->annee);
+}
+
+void afficheDate(Date *d){
+    printf("%n %n %n", &d->jour, (int *)&d->mois, &d->annee);
+}
