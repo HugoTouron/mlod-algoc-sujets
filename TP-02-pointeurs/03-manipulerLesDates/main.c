@@ -2,6 +2,6 @@
 
 int main(void){
     Date d;
-    initialiseDate(&d);
+    d = creerDateParCopie();
     afficheDate(&d);
 }
