@@ -25,4 +25,4 @@ void afficheDate(Date *d);
 
 Date creerDateParCopie();
 
-Date* newDate()
+Date* newDate();
