@@ -11,12 +11,18 @@ bool estVide(Liste l) {
 
 // créer une liste d'un seul élément contenant la valeur v
 Liste creer(Element v){
-	return TODO;
+	Liste l;
+	l = (Cellule*)malloc(sizeof(Cellule));
+	l->val = v;
+	l->suiv = NULL;
+	return l;
 }
 
 // ajoute l'élément v en tete de la liste l
 Liste ajoutTete(Element v, Liste l) {
-	return TODO;
+	Cellule *cell = creer(v);
+	cell->suiv = l;
+	return cell;
 }
 
 
@@ -30,36 +36,74 @@ void afficheElement(Element e) {
 // Attention la liste peut être vide !
 // version itérative
 void afficheListe_i(Liste l) {
-	TODO;
+	Cellule *cell = l;
+	while(cell->suiv != NULL){
+		afficheElement(cell->val);
+		cell = cell->suiv;
+	}
+	afficheElement(cell->val);
 }
 
 // version recursive
 void afficheListe_r(Liste l) {
-	TODO;
+	if(l==NULL){
+		printf('\n');
+	}
+	else{
+		afficheElement(l->val);
+		afficheListe_r(l->suiv);
+	}
 }
 
-void detruireElement(Element e) {}
+void detruireElement(Element e) {
+}
 
 // Détruit tous les éléments de la liste l
 // version itérative
 void detruire_i(Liste l) {
-	TODO;
+	Cellule *cell;
+	while (l != NULL){
+		cell = l->suiv;
+		detruireElement(l->val);
+		free(l);
+		l = cell;
+	}
 }
 
 // version récursive
 void detruire_r(Liste l) {
-	TODO;
+	Cellule *cell;
+	if(l != NULL){
+		cell = l->suiv;
+		free(l);
+		detruire_r(cell);
+	}
 }
+
 
 // retourne la liste dans laquelle l'élément v a été ajouté en fin
 // version itérative
 Liste ajoutFin_i(Element v, Liste l) {
-	return TODO;
+	if(estVide(l)){
+		return creer(v);
+	}
+	Cellule *cell = l;
+	while(cell->suiv != NULL){
+		cell = cell->suiv;
+	}
+	cell->suiv = creer(v);
+	return l;
 }
 
 // version recursive
 Liste ajoutFin_r(Element v, Liste l) {
-	return TODO;
+	if(estVide(l)){
+		return creer(v);
+	}
+	else{
+		l->suiv = ajoutFin_r(v, l->suiv);
+		return l;
+	}
 }
 
 // compare deux elements
@@ -70,19 +114,26 @@ bool equalsElement(Element e1, Element e2){
 // Retourne un pointeur sur l'élément de la liste l contenant la valeur v ou NULL
 // version itérative
 Liste cherche_i(Element v,Liste l) {
-	return TODO;
+	while(!estVide(l) && !equalsElement(v, l->val)){
+		l = l->suiv;
+	}
+	return(l);
 }
 
 // version récursive
 Liste cherche_r(Element v,Liste l) {
-	return TODO;
+	if(!estVide(l) && !equalsElement(v, l->val)){
+		cherche_r(v, l->suiv);
+	}
+	return l;
 }
 
 // Retourne la liste modifiée dans la laquelle le premier élément ayant la valeur v a été supprimé
 // ne fait rien si aucun élément possède cette valeur
 // version itérative
 Liste retirePremier_i(Element v, Liste l) {
-	return TODO;
+	Cellule *elem = cherche_i(v, l);
+	
 }
 
 
