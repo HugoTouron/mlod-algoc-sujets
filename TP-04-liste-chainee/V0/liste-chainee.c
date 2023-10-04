@@ -42,12 +42,13 @@ void afficheListe_i(Liste l) {
 		cell = cell->suiv;
 	}
 	afficheElement(cell->val);
+	printf("\n");
 }
 
 // version recursive
 void afficheListe_r(Liste l) {
 	if(l==NULL){
-		printf('\n');
+		printf("\n");
 	}
 	else{
 		afficheElement(l->val);
@@ -132,8 +133,27 @@ Liste cherche_r(Element v,Liste l) {
 // ne fait rien si aucun élément possède cette valeur
 // version itérative
 Liste retirePremier_i(Element v, Liste l) {
-	Cellule *elem = cherche_i(v, l);
-	
+	Liste precedent, p;
+	if(estVide(l)){
+		return l;
+	}
+
+	if(equalsElement(l->val, v)){
+		p = l->suiv;
+		detruire_i(l);
+		return p;
+	}
+	precedent = l;
+	p = l->suiv;
+	while(!estVide(p) && !equalsElement(v, p->val)){
+		precedent = p;
+		p = p->suiv;
+	}
+	if(!estVide(p)){
+		precedent->suiv = p->suiv;
+		detruire_i(p);
+	}
+	return l;
 }
 
 
